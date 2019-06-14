@@ -9,4 +9,7 @@
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.2.3" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\HelpPage.Gen\HelpPage.Gen.csproj" />
+  </ItemGroup>
 </Project>
