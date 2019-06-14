@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
@@ -7,6 +8,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.FileProviders;
 using Newtonsoft.Json.Serialization;
 
 namespace Basic
@@ -28,8 +30,22 @@ namespace Basic
             {
                 app.UseDeveloperExceptionPage();
             }
+            app.UseStaticFiles();
+             
 
-            app.UseMvc();
+
+            app.UseMvc(routes =>
+             {
+                 routes.MapRoute(
+                     name: "default",
+                     template: "{controller=Home}/{action=Index}/{id?}");
+
+                 //启用area
+                 routes.MapRoute(
+                     name: "area",
+                     template: "{area:exists}/{controller=Home}/{action=Index}/{id?}"
+                 );
+             });
 
         }
     }

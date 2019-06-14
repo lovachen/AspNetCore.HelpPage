@@ -6,7 +6,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\HelpPage.Gen\HelpPage.Gen.csproj" />
-    <ProjectReference Include="..\HelpPage.UI\HelpPage.UI.csproj" />
   </ItemGroup>
 
 </Project>
