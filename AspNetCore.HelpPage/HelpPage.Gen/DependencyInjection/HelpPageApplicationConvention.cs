@@ -10,6 +10,10 @@ namespace HelpPage.Gen
     /// </summary>
     public class HelpPageApplicationConvention : IApplicationModelConvention
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="application"></param>
         public void Apply(ApplicationModel application)
         {
             application.ApiExplorer.IsVisible = true;

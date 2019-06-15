@@ -1,5 +1,8 @@
-﻿<!DOCTYPE html>
-
+﻿@{ 
+   var groupName = ViewBag.GroupName as string;
+   var docs = ViewBag.Docs as IDictionary<string, OpenApiInfo>;
+}
+<!DOCTYPE html>
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
