@@ -32,11 +32,10 @@ namespace Basic
             services.AddMvc(c=>c.Conventions.Add(new ApiExplorerGroupPerVersionConvention()))
             .AddJsonOptions(options => options.SerializerSettings.ContractResolver = new DefaultContractResolver())
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
-
             services.AddHelpPageGen(ctf =>
             {
-                ctf.ApiDoc("v1", new OpenApiInfo() { Title = "测试 V1", Version = "v1" });
-                ctf.ApiDoc("v2", new OpenApiInfo() { Title = "测试 V2", Version = "v2" });
+                ctf.ApiDoc("v1", new OpenApiInfo() { Title = "测试 V1",Description= "描述信息V1", Version = "v1" });
+                ctf.ApiDoc("v2", new OpenApiInfo() { Title = "测试 V2",Description="描述信息V2", Version = "v2" });
             });
         }
 

@@ -16,7 +16,7 @@ namespace HelpPage.Gen
         /// <param name="application"></param>
         public void Apply(ApplicationModel application)
         {
-            application.ApiExplorer.IsVisible = true;
+            //application.ApiExplorer.IsVisible = true;
         }
     }
 }

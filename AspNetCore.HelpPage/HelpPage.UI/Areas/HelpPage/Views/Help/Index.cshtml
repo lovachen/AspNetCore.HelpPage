@@ -1,8 +1,12 @@
 ﻿
-@model Collection<ApiDescription>
+@model List<ApiDescription>
 @{ 
-//ILookup<HttpControllerDescriptor, ApiDescription> apiGroups = Model.ToLookup(api => api.ActionDescriptor);
+    var apiGroups =  Model.ToLookup(api => api.ActionDescriptor.RouteValues["controller"]);
+    var info = ViewBag.Info as OpenApiInfo;
+
+    //ILookup<HttpControllerDescriptor, ApiDescription> apiGroups = Model.ToLookup(api => api.ActionDescriptor);
 }
+<link href="~/HelpPage.css" rel="stylesheet" />
 <header class="help-page">
     <div class="content-wrapper">
         <div class="float-left">
@@ -13,17 +17,17 @@
 <div id="body" class="help-page">
     <section class="featured">
         <div class="content-wrapper">
-            <h2>Introduction</h2>
+            <h2>@(info?.Title)</h2>
             <p>
-                Provide a general description of your APIs here.
+                @(info?.Description)
             </p>
         </div>
     </section>
     <section class="content-wrapper main-content clear-fix">
-        @*@foreach (var group in apiGroups)
+        @foreach (var group in apiGroups)
         {
-        @Html.DisplayFor(m => group, "ApiGroup")
-        }*@
+            @Html.DisplayFor(m => group, "ApiGroup")
+        }
     </section>
 </div>
 

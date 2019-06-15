@@ -20,6 +20,11 @@ namespace HelpPage.Gen
         public void ApiDoc(string name,
             OpenApiInfo info)
         {
+            if (info == null)
+                throw new ArgumentNullException(nameof(info) + "不能为空");
+            if (String.IsNullOrEmpty(info.Version))
+                throw new ArgumentNullException(nameof(info) + " version 不能为空");
+
             HelpPageGeneratorOptions.ApiDocs.Add(name, info);
         }
 
