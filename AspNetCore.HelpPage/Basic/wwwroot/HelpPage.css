@@ -132,3 +132,9 @@
     color: #0000EE;
     text-decoration: none;
 }
+.breadcrumb-body{
+    padding-top:10px;
+}
+.breadcrumb{
+    margin-bottom:0;
+}

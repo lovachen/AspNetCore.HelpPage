@@ -1,0 +1,37 @@
+﻿@model HelpPageApiModel
+@{
+    ApiDescription description = Model.ApiDescription;
+}
+
+<h1>@description.HttpMethod @description.RelativePath</h1>
+
+<div>
+    <p>@Model.Documentation</p>
+
+    <h2>请求说明</h2>
+
+    <h3>URI 参数</h3>
+    @Html.DisplayFor(m => m.UriParameters, "Parameters")
+
+    <h3>Body 参数</h3>
+    <p>@Model.RequestDocumentation</p>
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

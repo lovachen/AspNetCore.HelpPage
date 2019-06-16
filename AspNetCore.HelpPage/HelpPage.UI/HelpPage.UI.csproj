@@ -11,4 +11,8 @@
   <ItemGroup>
     <ProjectReference Include="..\HelpPage.Gen\HelpPage.Gen.csproj" />
   </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Areas\HelpPage\Models\" />
+  </ItemGroup>
 </Project>

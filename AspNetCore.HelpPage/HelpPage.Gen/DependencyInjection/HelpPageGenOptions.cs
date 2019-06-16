@@ -7,17 +7,22 @@ namespace HelpPage.Gen
 {
     public class HelpPageGenOptions
     {
+        public HelpPageGenOptions()
+        {
+            this.ApiDocs = new Dictionary<string, OpenApiInfo>();
+        }
+
         /// <summary>
         /// 
         /// </summary>
-        public HelpPageGeneratorOptions HelpPageGeneratorOptions { get; set; } = new HelpPageGeneratorOptions();
-         
+        public IDictionary<string, OpenApiInfo> ApiDocs { get; }
+
         /// <summary>
         /// 定义配置文档，可配置多个
         /// </summary>
-        /// <param name="name">一个url友好标识的唯一名称</param>
+        /// <param name="groupName">文档组名</param>
         /// <param name="info">文档描述</param>
-        public void ApiDoc(string name,
+        public void ApiDoc(string groupName,
             OpenApiInfo info)
         {
             if (info == null)
@@ -25,7 +30,7 @@ namespace HelpPage.Gen
             if (String.IsNullOrEmpty(info.Version))
                 throw new ArgumentNullException(nameof(info) + " version 不能为空");
 
-            HelpPageGeneratorOptions.ApiDocs.Add(name, info);
+            this.ApiDocs.Add(groupName, info);
         }
 
         /// <summary>

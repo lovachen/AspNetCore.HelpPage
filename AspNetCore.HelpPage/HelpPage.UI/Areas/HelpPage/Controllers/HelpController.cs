@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using HelpPage.Gen;
-using HelpPage.UI.Areas.HelpPage.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using Microsoft.Extensions.Options;
@@ -15,55 +14,44 @@ namespace HelpPage.UI.Areas.HelpPage.Controllers
 {
     public class HelpController : AreaController
     {
-        private readonly IApiDescriptionGroupCollectionProvider _apiDescriptionsProvider;
-        private IOptions<HelpPageGenOptions> _options;
+        private IHelpPageProvider _helpPageProvider;
 
-        public HelpController(IApiDescriptionGroupCollectionProvider apiDescriptionGroupCollectionProvider,
-            IOptions<HelpPageGenOptions> options)
+        public HelpController( IHelpPageProvider helpPageProvider)
         {
-            _options = options;
-            _apiDescriptionsProvider = apiDescriptionGroupCollectionProvider;
+            _helpPageProvider = helpPageProvider; 
         }
 
         [Route("helppage/{groupName?}", Name = "helpPageIndex")]
         // GET: /<controller>/
         public IActionResult Index(string groupName = null)
         {
-            OpenApiInfo info = null;
-            var docs = _options.Value.HelpPageGeneratorOptions.ApiDocs;
-            if (!String.IsNullOrEmpty(groupName))
-            {
-                docs.TryGetValue(groupName, out info);
-            }
-            if (info == null)
-            {
-                var doc = docs.FirstOrDefault();
-                info = doc.Value;
-                groupName = doc.Key;
-            }
-            ViewBag.Info = info;
-            ViewBag.GroupName = groupName;
-            ViewBag.Docs = docs;
+            var doc = _helpPageProvider.GetInfo(groupName);
+            ViewBag.Info = doc.Value;
+            ViewBag.GroupName = doc.Key;
+            ViewBag.Docs = _helpPageProvider.GetApiDocs();
             //api描述集
-            var items = _apiDescriptionsProvider.ApiDescriptionGroups.Items.SelectMany(group => group.Items)
-                .Where(apiDesc => !apiDesc.CustomAttributes().OfType<ObsoleteAttribute>().Any())
-                .Where(apiDesc => apiDesc.GroupName == null || apiDesc.GroupName == info.Version).ToList();
+            var items = _helpPageProvider.GetApiDescriptions(doc.Key);
 
             return View(items);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="groupName"></param>
+        /// <param name="apiId"></param>
+        /// <returns></returns>
         [Route("helppage/api/{groupName}/{apiId}", Name ="helpPageApi")]
         public ActionResult Api(string groupName, string apiId)
         {
             if (!String.IsNullOrEmpty(apiId))
             {
-                HelpPageApiModel apiModel = new HelpPageApiModel();
+                HelpPageApiModel apiModel = _helpPageProvider.GetApiModel(groupName,apiId);
                 if (apiModel != null)
                 {
                     return View(apiModel);
                 }
             }
-
             return View("Error");
         }
     }
