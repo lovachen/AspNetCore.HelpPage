@@ -1,0 +1,108 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Basic</name>
+    </assembly>
+    <members>
+        <member name="T:Basic.Controllers.ValuesController">
+            <summary>
+            values控制器的说明内容
+            </summary>
+        </member>
+        <member name="M:Basic.Controllers.ValuesController.Get">
+            <summary>
+            获取数组集合
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Basic.Controllers.ValuesController.Login(Basic.Models.LoginModel)">
+            <summary>
+            用户登录
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Basic.Controllers.ValuesController.GetSalt(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="mobile">手机号码</param>
+            <returns></returns>
+        </member>
+        <member name="T:Basic.Models.LoginModel">
+            <summary>
+            登录参数对象
+            </summary>
+        </member>
+        <member name="P:Basic.Models.LoginModel.Name">
+            <summary>
+            名称
+            </summary>
+        </member>
+        <member name="P:Basic.Models.LoginModel.Pwd">
+            <summary>
+            密码
+            </summary>
+        </member>
+        <member name="T:Basic.Models.ResModel`1">
+            <summary>
+            接口结果对象
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="P:Basic.Models.ResModel`1.code">
+            <summary>
+            0：成功，
+            </summary>
+        </member>
+        <member name="P:Basic.Models.ResModel`1.msg">
+            <summary>
+            描述
+            </summary>
+        </member>
+        <member name="P:Basic.Models.ResModel`1.data">
+            <summary>
+            结果对象
+            </summary>
+        </member>
+        <member name="T:Basic.Models.TestData">
+            <summary>
+            登录结果
+            </summary>
+        </member>
+        <member name="P:Basic.Models.TestData.token">
+            <summary>
+            登录返回的tonken
+            </summary>
+        </member>
+        <member name="T:Basic.ApiExplorerGroupPerVersionConvention">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Basic.ApiExplorerGroupPerVersionConvention.Apply(Microsoft.AspNetCore.Mvc.ApplicationModels.ControllerModel)">
+            <summary>
+            
+            </summary>
+            <param name="controller"></param>
+        </member>
+        <member name="T:Basic.Startup">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Basic.Startup.ConfigureServices(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            
+            </summary>
+            <param name="services"></param>
+        </member>
+        <member name="M:Basic.Startup.Configure(Microsoft.AspNetCore.Builder.IApplicationBuilder,Microsoft.AspNetCore.Hosting.IHostingEnvironment)">
+            <summary>
+            
+            </summary>
+            <param name="app"></param>
+            <param name="env"></param>
+        </member>
+    </members>
+</doc>

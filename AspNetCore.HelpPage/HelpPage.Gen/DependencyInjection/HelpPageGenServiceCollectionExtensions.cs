@@ -21,7 +21,6 @@ namespace Microsoft.Extensions.DependencyInjection
 
             services.AddSingleton<IHelpPageProvider, HelpPageGenerator>();
 
-
             if (action != null) services.ConfigureHelpPageGen(action);
 
             return services;

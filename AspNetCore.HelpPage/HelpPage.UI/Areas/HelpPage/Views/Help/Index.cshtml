@@ -1,7 +1,7 @@
 ﻿
 @model List<ApiDescription>
 @{ 
-    var apiGroups =  Model.ToLookup(api => api.ActionDescriptor.RouteValues["controller"]);
+    var apiGroups =  Model.ToLookup(api => (api.ActionDescriptor as ControllerActionDescriptor).ControllerTypeInfo);
     var info = ViewBag.Info as OpenApiInfo;
 
     //ILookup<HttpControllerDescriptor, ApiDescription> apiGroups = Model.ToLookup(api => api.ActionDescriptor);

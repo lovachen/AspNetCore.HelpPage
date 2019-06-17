@@ -13,7 +13,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HelpPage", "HelpPage\HelpPa
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Basic", "Basic\Basic.csproj", "{451953A4-E219-4DFC-8245-AD404DB2F8C3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HelpPage.UI", "HelpPage.UI\HelpPage.UI.csproj", "{5C18D8D4-4BC7-4534-8A1C-EBA0BBA67043}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HelpPage.UI", "HelpPage.UI\HelpPage.UI.csproj", "{5C18D8D4-4BC7-4534-8A1C-EBA0BBA67043}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

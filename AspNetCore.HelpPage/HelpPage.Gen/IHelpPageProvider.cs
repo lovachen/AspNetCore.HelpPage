@@ -9,6 +9,11 @@ namespace HelpPage.Gen
     public interface IHelpPageProvider
     {
         /// <summary>
+        /// 文档提供者
+        /// </summary>
+        XmlDocumentationProvider XmlProvider { get; }
+
+        /// <summary>
         /// 文档描述字典
         /// </summary>
         IDictionary<string, OpenApiInfo> GetApiDocs();
@@ -35,5 +40,13 @@ namespace HelpPage.Gen
         /// <param name="apiDescriptionId"></param>
         /// <returns></returns>
         HelpPageApiModel GetApiModel(string groupName,string apiDescriptionId);
+
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        ModelDescriptionGenerator GetModelDescriptionGenerator();
+
     }
 }

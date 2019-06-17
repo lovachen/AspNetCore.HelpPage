@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Xml.XPath;
 
 namespace HelpPage.Gen
 {
@@ -16,6 +17,11 @@ namespace HelpPage.Gen
         /// 
         /// </summary>
         public IDictionary<string, OpenApiInfo> ApiDocs { get; }
+
+        /// <summary>
+        /// 注释文档提供者
+        /// </summary>
+        public XmlDocumentationProvider XmlProvider { get; private set; }
 
         /// <summary>
         /// 定义配置文档，可配置多个
@@ -36,10 +42,9 @@ namespace HelpPage.Gen
         /// <summary>
         /// 导入XML注释文件
         /// </summary>
-        public void IncludeXmlComments()
+        public void IncludeXmlComments(string filePath)
         {
-
-
+            XmlProvider =  new XmlDocumentationProvider(filePath);
         }
 
     }

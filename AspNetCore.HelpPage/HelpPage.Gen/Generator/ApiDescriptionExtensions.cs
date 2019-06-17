@@ -66,5 +66,7 @@ namespace HelpPage.Gen
             }
             return friendlyPath.ToString();
         }
+
+         
     }
 }

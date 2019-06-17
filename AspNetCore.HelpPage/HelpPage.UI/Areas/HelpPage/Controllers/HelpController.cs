@@ -29,6 +29,7 @@ namespace HelpPage.UI.Areas.HelpPage.Controllers
             ViewBag.Info = doc.Value;
             ViewBag.GroupName = doc.Key;
             ViewBag.Docs = _helpPageProvider.GetApiDocs();
+            ViewBag.XmlProvider = _helpPageProvider.XmlProvider;
             //api描述集
             var items = _helpPageProvider.GetApiDescriptions(doc.Key);
 
@@ -54,5 +55,25 @@ namespace HelpPage.UI.Areas.HelpPage.Controllers
             }
             return View("Error");
         }
+
+        /// <summary>
+        /// /
+        /// </summary>
+        /// <param name="modelName"></param>
+        /// <returns></returns>
+        public ActionResult ResourceModel(string modelName)
+        {
+            if (!String.IsNullOrEmpty(modelName))
+            {
+                ModelDescriptionGenerator modelDescriptionGenerator = _helpPageProvider.GetModelDescriptionGenerator();
+                ModelDescription modelDescription;
+                if (modelDescriptionGenerator.GeneratedModels.TryGetValue(modelName, out modelDescription))
+                {
+                    return View(modelDescription);
+                }
+            }
+            return View("Error");
+        }
+
     }
 }

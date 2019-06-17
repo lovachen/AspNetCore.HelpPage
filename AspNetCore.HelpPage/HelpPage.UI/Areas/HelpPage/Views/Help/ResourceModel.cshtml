@@ -1,0 +1,16 @@
+﻿@model ModelDescription
+
+<div id="body" class="help-page">
+    <div class="breadcrumb-body">
+        <ol class="breadcrumb">
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Library</a></li>
+            <li class="active">Data</li>
+        </ol>
+    </div>
+    <h1>@Model.Name</h1>
+    <p>@Model.Documentation</p>
+    <section class="content-wrapper main-content clear-fix">
+        @Html.DisplayFor(m => Model)
+    </section>
+</div>

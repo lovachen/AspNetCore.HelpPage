@@ -1,0 +1,23 @@
+﻿@model EnumTypeModelDescription
+
+<p>枚举的值</p>
+
+<table class="help-page-table">
+    <thead>
+        <tr><th>名称</th><th>值</th><th>描述</th></tr>
+    </thead>
+    <tbody>
+        @foreach (EnumValueDescription value in Model.Values)
+        {
+            <tr>
+                <td class="enum-name"><b>@value.Name</b></td>
+                <td class="enum-value">
+                    <p>@value.Value</p>
+                </td>
+                <td class="enum-description">
+                    <p>@value.Documentation</p>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
