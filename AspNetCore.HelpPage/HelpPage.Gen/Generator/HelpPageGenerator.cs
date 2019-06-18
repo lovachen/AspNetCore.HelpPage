@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc.Abstractions;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Abstractions;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using Microsoft.AspNetCore.Mvc.Controllers;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
@@ -113,9 +114,9 @@ namespace HelpPage.Gen
         /// <returns></returns>
         public ModelDescriptionGenerator GetModelDescriptionGenerator()
         {
-           return (ModelDescriptionGenerator)Properties.GetOrAdd(
-                typeof(ModelDescriptionGenerator),
-                k => InitializeModelDescriptionGenerator());
+            return (ModelDescriptionGenerator)Properties.GetOrAdd(
+                 typeof(ModelDescriptionGenerator),
+                 k => InitializeModelDescriptionGenerator());
         }
 
         #region 私有方法
@@ -133,10 +134,20 @@ namespace HelpPage.Gen
                 {
                     modelGenerator.GetOrCreateModelDescription(parameterDescription.ParameterDescriptor.ParameterType);
                 }
+                if(api.SupportedResponseTypes!=null && api.SupportedResponseTypes.Any())
+                {
+                    ApiResponseType responseType = api.SupportedResponseTypes.FirstOrDefault();
+                    modelGenerator.GetOrCreateModelDescription(responseType.Type);
+                }
             }
             return modelGenerator;
         }
 
+        /// <summary>
+        /// 创建HelpPageApiModel
+        /// </summary>
+        /// <param name="apiDescription"></param>
+        /// <returns></returns>
         private HelpPageApiModel GenerateApiModel(ApiDescription apiDescription)
         {
             HelpPageApiModel apiModel = new HelpPageApiModel()
@@ -148,6 +159,7 @@ namespace HelpPage.Gen
 
             GenerateUriParameters(apiModel, modelGenerator);
             GenerateRequestModelDescription(apiModel, modelGenerator, sampleGenerator);
+            GenerateResourceDescription(apiModel, modelGenerator);
 
             return apiModel;
         }
@@ -261,6 +273,26 @@ namespace HelpPage.Gen
                     apiModel.RequestDocumentation = XmlProvider.GetDocumentation(apiModel.ApiDescription, apiParameter);
                 }
             }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="apiModel"></param>
+        /// <param name="modelGenerator"></param>
+        private static void GenerateResourceDescription(HelpPageApiModel apiModel, ModelDescriptionGenerator modelGenerator)
+        {
+            IList<ApiResponseType> responseTypes = apiModel.ApiDescription.SupportedResponseTypes;
+            if (responseTypes != null && responseTypes.Any())
+            {
+                ApiResponseType responseType = responseTypes.FirstOrDefault();
+                apiModel.ResourceDescription = modelGenerator.GetOrCreateModelDescription(responseType.Type);
+            }
+            //Type responseType = response.ResponseType ?? response.DeclaredType;
+            //if (responseType != null && responseType != typeof(void))
+            //{
+            //    apiModel.ResourceDescription = modelGenerator.GetOrCreateModelDescription(responseType);
+            //}
         }
 
         #endregion

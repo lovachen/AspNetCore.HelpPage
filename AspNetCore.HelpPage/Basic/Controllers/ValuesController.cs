@@ -78,5 +78,18 @@ namespace Basic.Controllers
             return Ok(res);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns>登录成功，返回 code:0 成功其它请看msg提示</returns>
+        [HttpGet("getlogin")]
+        [ProducesResponseType(typeof(ResModel<TestData>),StatusCodes.Status200OK)]
+        public IActionResult GetLogin([FromQuery] LoginModel model)
+        {
+            ResModel<TestData> s = new ResModel<TestData>();
+            s.data = new TestData() { token = "badsfsf" };
+            return Ok();
+        }
     }
 }

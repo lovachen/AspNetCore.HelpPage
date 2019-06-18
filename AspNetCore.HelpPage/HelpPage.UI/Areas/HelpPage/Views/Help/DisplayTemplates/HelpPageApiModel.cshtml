@@ -25,8 +25,26 @@
     }
     else
     {
+        <p>无.</p>
+    }
+    <h2>响应说明</h2>
+
+    <h3>响应结果</h3>
+    <p>@Model.ResponseDocumentation</p>
+    @if (Model.ResourceDescription != null)
+    {
+        @Html.DisplayFor(m => m.ResourceDescription.ModelType, "ModelDescriptionLink", new { modelDescription = Model.ResourceDescription })
+        if (Model.ResourceProperties != null)
+        {
+            @Html.DisplayFor(m => m.ResourceProperties, "Parameters")
+        }
+    }
+    else
+    {
         <p>None.</p>
     }
+
+
 
 </div>
 

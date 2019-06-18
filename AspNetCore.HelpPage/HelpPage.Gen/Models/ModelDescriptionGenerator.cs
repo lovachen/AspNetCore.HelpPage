@@ -341,6 +341,11 @@ namespace HelpPage.Gen
             };
         }
 
+        /// <summary>
+        /// 构建复杂类型描述
+        /// </summary>
+        /// <param name="modelType"></param>
+        /// <returns></returns>
         private ModelDescription GenerateComplexTypeModelDescription(Type modelType)
         {
             ComplexTypeModelDescription complexModelDescription = new ComplexTypeModelDescription

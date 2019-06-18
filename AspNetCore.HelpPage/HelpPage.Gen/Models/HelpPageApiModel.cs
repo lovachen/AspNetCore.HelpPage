@@ -48,6 +48,33 @@ namespace HelpPage.Gen
             }
         }
 
+        /// <summary>
+        /// 响应描述
+        /// </summary>
+        public ModelDescription ResponseDescription { get; set; }
+
+        /// <summary>
+        /// 响应说明
+        /// </summary>
+        public string ResponseDocumentation { get; set; }
+
+
+        /// <summary>
+        /// 结果对象
+        /// </summary>
+        public ModelDescription ResourceDescription { get; set; }
+
+
+        /// <summary>
+        /// 结果对象参数集合
+        /// </summary>
+        public IList<ParameterDescription> ResourceProperties
+        {
+            get
+            {
+                return GetParameterDescriptions(ResourceDescription);
+            }
+        }
 
         /// <summary>
         /// 

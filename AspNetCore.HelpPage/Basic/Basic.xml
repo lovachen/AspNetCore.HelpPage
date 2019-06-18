@@ -29,6 +29,13 @@
             <param name="mobile">手机号码</param>
             <returns></returns>
         </member>
+        <member name="M:Basic.Controllers.ValuesController.GetLogin(Basic.Models.LoginModel)">
+            <summary>
+            
+            </summary>
+            <param name="model"></param>
+            <returns>登录成功，返回 code:0 成功其它请看msg提示</returns>
+        </member>
         <member name="T:Basic.Models.LoginModel">
             <summary>
             登录参数对象
