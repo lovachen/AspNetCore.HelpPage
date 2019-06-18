@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Net.Http.Headers;
 
 namespace HelpPage.Gen
 {
@@ -10,9 +11,9 @@ namespace HelpPage.Gen
         public HelpPageApiModel()
         {
             UriParameters = new Collection<ParameterDescription>();
-            //SampleRequests = new Dictionary<MediaTypeHeaderValue, object>();
-            //SampleResponses = new Dictionary<MediaTypeHeaderValue, object>();
-            //ErrorMessages = new Collection<string>();
+            SampleRequests = new Dictionary<MediaTypeHeaderValue, object>();
+            SampleResponses = new Dictionary<MediaTypeHeaderValue, object>();
+            ErrorMessages = new Collection<string>();
         }
 
         public ApiDescription ApiDescription { get; set; }
@@ -75,6 +76,23 @@ namespace HelpPage.Gen
                 return GetParameterDescriptions(ResourceDescription);
             }
         }
+
+
+        /// <summary>
+        /// 请求媒体格式
+        /// </summary>
+        public IDictionary<MediaTypeHeaderValue, object> SampleRequests { get; private set; }
+
+        /// <summary>
+        /// 响应媒体格式
+        /// </summary>
+        public IDictionary<MediaTypeHeaderValue, object> SampleResponses { get; private set; }
+
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public Collection<string> ErrorMessages { get; private set; }
 
         /// <summary>
         /// 

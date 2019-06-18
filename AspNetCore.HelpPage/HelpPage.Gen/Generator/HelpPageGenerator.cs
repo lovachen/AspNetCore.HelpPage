@@ -160,6 +160,7 @@ namespace HelpPage.Gen
             GenerateUriParameters(apiModel, modelGenerator);
             GenerateRequestModelDescription(apiModel, modelGenerator, sampleGenerator);
             GenerateResourceDescription(apiModel, modelGenerator);
+            GenerateSamples(apiModel, sampleGenerator);
 
             return apiModel;
         }
@@ -288,12 +289,13 @@ namespace HelpPage.Gen
                 ApiResponseType responseType = responseTypes.FirstOrDefault();
                 apiModel.ResourceDescription = modelGenerator.GetOrCreateModelDescription(responseType.Type);
             }
-            //Type responseType = response.ResponseType ?? response.DeclaredType;
-            //if (responseType != null && responseType != typeof(void))
-            //{
-            //    apiModel.ResourceDescription = modelGenerator.GetOrCreateModelDescription(responseType);
-            //}
         }
+
+        private static void GenerateSamples(HelpPageApiModel apiModel, HelpPageSampleGenerator sampleGenerator)
+        {
+             
+        }
+         
 
         #endregion
     }

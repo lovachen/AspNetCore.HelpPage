@@ -56,7 +56,7 @@ namespace Basic.Controllers
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        [Route("login")]
+        [HttpPost("login")]
         [ProducesResponseType(typeof(ResModel<TestData>),StatusCodes.Status200OK)]
         public IActionResult Login([FromBody]LoginModel model)
         {

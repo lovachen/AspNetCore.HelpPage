@@ -9,24 +9,31 @@
     <p>@Model.Documentation</p>
 
     <h2>请求说明</h2>
-
     <h3>URI 参数</h3>
     @Html.DisplayFor(m => m.UriParameters, "Parameters")
 
-    <h3>Body 参数</h3>
-    <p>@Model.RequestDocumentation</p>
     @if (Model.RequestModelDescription != null)
     {
-        @Html.DisplayFor(m => m.RequestModelDescription.ModelType, "ModelDescriptionLink", new { modelDescription = Model.RequestModelDescription })
-        if (Model.RequestBodyParameters != null)
+        <h3>Body 参数</h3>
+        <p>@Model.RequestDocumentation</p>
+        @if (Model.RequestModelDescription != null)
         {
-            @Html.DisplayFor(m => m.RequestBodyParameters, "Parameters")
+            @Html.DisplayFor(m => m.RequestModelDescription.ModelType, "ModelDescriptionLink", new { modelDescription = Model.RequestModelDescription })
+            if (Model.RequestBodyParameters != null)
+            {
+                @Html.DisplayFor(m => m.RequestBodyParameters, "Parameters")
+            }
         }
     }
-    else
+
+    @if (Model.SampleRequests.Count > 0)
     {
-        <p>无.</p>
+        <h3>Request Formats</h3>
+        @Html.DisplayFor(m => m.SampleRequests, "Samples")
     }
+
+
+
     <h2>响应说明</h2>
 
     <h3>响应结果</h3>

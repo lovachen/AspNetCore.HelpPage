@@ -1,13 +1,11 @@
 ﻿@model HelpPageApiModel
     <div class="breadcrumb-body">
         <ol class="breadcrumb">
-            <li><a href="#">Home</a></li>
-            <li><a href="#">Library</a></li>
-            <li class="active">Data</li>
+            <li><a href="/helppage">首页</a></li>
+            <li class="active">@Model.ApiDescription.GetFriendlyId()</li>
         </ol>
     </div>
     <div id="body" class="help-page">
-        
         <section class="content-wrapper main-content clear-fix">
             @Html.DisplayForModel()
         </section>

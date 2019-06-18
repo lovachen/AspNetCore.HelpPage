@@ -21,14 +21,11 @@
             padding-top: 50px;
             padding-bottom: 20px;
         }
-
-        /* Set padding to keep content from hitting the edges */
         .body-content {
             padding-left: 15px;
             padding-right: 15px;
         }
-
-        /* Set width on the form input elements since they're 100% wide by default */
+         
         input,
         select,
         textarea {
@@ -45,32 +42,31 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("HelpPage", "Index", "Help", new { area = "HelpPage" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("Api接口文档", "Index", "Help", new { area = "HelpPage" }, new { @class = "navbar-brand" })
             </div> 
-            <!-- Collect the nav links, forms, and other content for toggling -->
+            @if (docs != null && docs.Any())
+            {
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">@(info?.Title) <span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            @if (docs != null && docs.Any())
+                            @foreach (var doc in docs)
                             {
-                                foreach (var doc in docs)
-                                {
-                                    <li><a href="@Url.RouteUrl("helpPageIndex",new { groupName = doc.Value.Version })">@doc.Value.Title</a></li>
-                                }
+                                <li><a href="@Url.RouteUrl("helpPageIndex", new { groupName = doc.Value.Version })">@doc.Value.Title</a></li>
                             }
                         </ul>
                     </li>
                 </ul>
-            </div><!-- /.navbar-collapse -->
+            </div>
+            }
         </div>
         </div>
         <div class="container body-content">
             @RenderBody()
             <hr />
             <footer>
-                <p>&copy; @DateTime.Now.Year - 我的 ASP.NET 应用程序</p>
+                <p>&copy; @DateTime.Now.Year - Api接口文档  </p>
             </footer>
         </div>
     </body>

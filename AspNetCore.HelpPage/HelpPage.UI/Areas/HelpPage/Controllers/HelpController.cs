@@ -50,6 +50,8 @@ namespace HelpPage.UI.Areas.HelpPage.Controllers
                 HelpPageApiModel apiModel = _helpPageProvider.GetApiModel(groupName,apiId);
                 if (apiModel != null)
                 {
+                    ViewBag.GroupName = groupName;
+                    ViewBag.ApiId = apiId;
                     return View(apiModel);
                 }
             }
@@ -61,7 +63,8 @@ namespace HelpPage.UI.Areas.HelpPage.Controllers
         /// </summary>
         /// <param name="modelName"></param>
         /// <returns></returns>
-        public ActionResult ResourceModel(string modelName)
+        [Route("helppage/res/{groupName}/{apiId}/{modelName}", Name = "helpPageResourceModel")]
+        public ActionResult ResourceModel(string groupName,string apiId, string modelName)
         {
             if (!String.IsNullOrEmpty(modelName))
             {
@@ -69,6 +72,8 @@ namespace HelpPage.UI.Areas.HelpPage.Controllers
                 ModelDescription modelDescription;
                 if (modelDescriptionGenerator.GeneratedModels.TryGetValue(modelName, out modelDescription))
                 {
+                    ViewBag.GroupName = groupName;
+                    ViewBag.ApiId = apiId;
                     return View(modelDescription);
                 }
             }
